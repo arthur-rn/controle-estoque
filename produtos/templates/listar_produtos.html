@@ -5,34 +5,67 @@
         <title>Produtos</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'produtos/css/listar_produtos.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Lista de produtos</h1>
-        <a href="{% url 'criar_produto' %}" class="btn">Cadastrar Produto</a>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
-            </tr>
-
-            {% for produto in produtos %}
-            <tr>
-                <td>{{ produto.id }}</td>
-                <td>{{ produto.nome }}</td>
-                <td>{{ produto.descricao }}</td>
-                <td>R${{ produto.preco }}</td>
-                <td>{{ produto.quantidade }}</td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="4">Nenhum produto cadastrado ainda.</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <a href="{% url 'home' %}" class="btn-voltar">Voltar</a>
+        <br>
+        <p class="h1" style="text-align: center;">Lista de Produtos</p>
+        <div class="container mt-4">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produto in produtos %}
+                    <tr>
+                        <td>{{ produto.id }}</td>
+                        <td>{{ produto.nome }}</td>
+                        <td>{{ produto.descricao }}</td>
+                        <td>R${{ produto.preco }}</td>
+                        <td>{{ produto.quantidade }}</td>
+                        <td>    
+                            <div class="d-flex gap-2">
+                                <a href="{% url 'editar_produto' produto.id %}" class="btn btn-sm btn-primary">Editar</a>
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_exclusao{{ produto.id }}">Excluir</button>
+                            </div>
+                            <div class="modal fade" id="modal_exclusao{{ produto.id }}" tabindex="-1" aria-labelledby="modalLabel{{ produto.id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form method="POST" action="{% url 'excluir_produto' produto.id %}">
+                                            {% csrf_token %}
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modal-label{{ produto.id }}">Confirmar Exclusão</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Tem certeza que deseja excluir o item <strong>{{ produto.nome }}</strong>?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-danger">Sim, excluir</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Nenhum produto cadastrado ainda.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'criar_produto' %}"><button type="button" class="btn btn-success">Cadastrar Produto</button></a>
+            <a href="{% url 'home' %}" class="btn-voltar"><button type="button" class="btn btn-danger">Voltar</button></a>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     </body>
-</html>
+    </html>
