@@ -1,18 +1,26 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <title>Home</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="d-grid gap-2 col-4 mx-auto">
-            <br>
+
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="d-grid gap-2 col-4 mx-auto">
+        <br>
+        <div class="card shadow p-4" style="width: 600px;">
             <p class="h1" style="text-align: center;">Página Inicial</p>
+            <br>
             <a href="{% url 'criar_produto' %}" class="btn btn-primary" type="button">Criar Produto</a>
+            <br>
             <a href="{% url 'listar_produtos' %}" class="btn btn-primary" type="button">Listar Produtos</a>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

@@ -1,38 +1,28 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Editar Produtos</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    </head>
-    <body>
-        <br>
-        <p class="h1" style="text-align: center;">Editar produto</p>
-        <div class="container">
+<html lang="pt-BR">
+
+<head>
+    <title>Editar Produto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+    <div class="container d-flex justify-content-center align-items-start mt-5">
+        <div class="card shadow p-4" style="width: 1400px;">
+            <p class="h1" style="text-align: center;">Editar produto</p>
             <form method="POST">
                 {% csrf_token %}
-                <div class="mb-3">
-                     <label for="nome" class="form-label">Nome</label>
-                     <input type="name" class="form-control" id="nome" name="nome" value="{{ form.nome.value }}">
-                </div>
-                <div class="mb-3">
-                    <label for="descricao" class="form-label">Descrição</label>
-                    <textarea class="form-control" id="descricao" name="descricao" rows="3">{{ form.descricao.value }}</textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="preco" class="form-label">Preço</label>
-                    <input type="number" class="form-control" id="preco" name="preco" value="{{ form.preco.value }}">
-                </div>
-                <div class="mb-3">
-                    <label for="quantidade" class="form-label">Quantidade</label>
-                    <input type="number" class="form-control" id="quantidade" name="quantidade" value="{{ form.quantidade.value }}">
-                </div>
+                {{ form.as_p }}
 
                 <button type="submit" class="btn btn-success">Salvar</button>
                 <a href="{% url 'home' %}" class="btn btn-danger">Voltar</a>
             </form>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
