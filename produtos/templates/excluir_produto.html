@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Excluir Produto</title>
-</head>
-<body>
-    <h1>Excluir {{ produto.nome }}?</h1>
-    <p>Tem certeza que deseja excluir o produto "{{ produto.nome }}"?</p>
-    
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Confirmar Exclusão</button>
-    </form>
-    
-    <a href="{% url 'listar_produtos' %}">Cancelar</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Excluir Produto{% endblock %}
+
+{% block content %}
+<p class="h1" style="text-align: center;">Excluir {{ produto.nome }}?</p>
+<p>Tem certeza que deseja excluir o produto "{{ produto.nome }}"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+    <a href="{% url 'listar_produtos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
